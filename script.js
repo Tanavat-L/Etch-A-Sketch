@@ -16,5 +16,11 @@ for(let i = 0; i<16; i++){
     container.appendChild(row);
 }
 
-let row = document.querySelectorAll(".row");
+let columns = document.querySelectorAll(".column");
 
+for(let i = 0; i<columns.length; i++){
+    columns[i].addEventListener("mouseover", (event) => {
+        let target = event.target;
+        target.style.backgroundColor = "black";
+    })
+}
