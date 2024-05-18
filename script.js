@@ -2,13 +2,13 @@
 let container = document.querySelector(".container");
 let currentSize = 16;
 let currentColor = "black";
-let temp;
+let currentOpacity = 0.1;
 
 function makeGrid(size){
     for(let i = 0; i<size; i++){
         let row = document.createElement("div");
         row.className = "row";
-        row.style.cssText = "display: flex; flex: 1 1 auto;"
+        row.style.cssText = "display: flex; flex: 1 1 auto; background-color: white;"
         for(let j = 0; j<size; j++){
             let column = document.createElement("div");
             column.className = "column";
@@ -29,14 +29,21 @@ function addPixelColorChange(color){
         columns[i].addEventListener("mouseover", (event) => {
             let target = event.target;
             if(color == "black"){
+                target.style.opacity = currentOpacity;
                 target.style.backgroundColor = "black";
+                if(currentOpacity < 1){
+                    currentOpacity += 0.1;
+                }
             }
             else if (color == "rgb"){
                 let red = Math.round((Math.random()*255));
-                temp = red;
                 let blue = Math.round((Math.random()*255));
                 let green = Math.round((Math.random()*255));
+                target.style.opacity = currentOpacity;
                 target.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
+                if(currentOpacity < 1){
+                    currentOpacity += 0.1;
+                }
             }
         })
     }
@@ -66,6 +73,7 @@ function addSizeChangeButton(wrapper){
             makeGrid(size);
             addPixelColorChange(currentColor);
             currentSize = size;
+            currentOpacity = 0.1;
         }
         else{
             alert("Enter a valid number");
@@ -81,6 +89,7 @@ function addClearButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         container.innerHTML = "";
+        currentOpacity = 0.1;
         makeGrid(currentSize);
         addPixelColorChange(currentColor);
     })
@@ -94,6 +103,7 @@ function addRGBButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "rgb";
+        currentOpacity = 0.1;
         addPixelColorChange(currentColor);
     })
 }
@@ -106,6 +116,7 @@ function addBlackButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "black";
+        currentOpacity = 0.1;
         addPixelColorChange(currentColor);
     })
 }
