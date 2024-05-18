@@ -12,7 +12,7 @@ function makeGrid(size){
         for(let j = 0; j<size; j++){
             let column = document.createElement("div");
             column.className = "column";
-            column.style.cssText = "flex: 1 1 auto; aspect-ratio: 1/1; border: 1px solid black; background-color:white;"
+            column.style.cssText = "flex: 1 1 auto; aspect-ratio: 1/1; background-color:#FFFAE6;"
             row.appendChild(column);
         }
         container.appendChild(row);
