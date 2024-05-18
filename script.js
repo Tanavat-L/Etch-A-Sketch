@@ -1,7 +1,6 @@
 
 let container = document.querySelector(".container");
-let currentX = 16;
-let currentY = 16;
+let current = 16;
 
 function makeGrid(size){
     for(let i = 0; i<size; i++){
@@ -35,15 +34,16 @@ function addPixelColorChange(){
 function addButtons(){
     let buttonWrapper = document.createElement("div");
     let firstRow = document.querySelector(".row");
-    buttonWrapper.style.cssText="display:flex; justify-content: center; align-item: center; margin: 50px;";
+    buttonWrapper.style.cssText="display:flex; justify-content: center; align-item: center; margin: 50px; gap: 10px";
     container.insertBefore(buttonWrapper,firstRow);
     addSizeChangeButton(buttonWrapper);
+    addClearButton(buttonWrapper);
 }
 
 function addSizeChangeButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "Change grid size";
-    button.classText= "grid-size";
+    button.classText= "change-size-button";
     button.style.fontSize = "25px";
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
@@ -51,8 +51,21 @@ function addSizeChangeButton(wrapper){
         container.innerHTML = "";
         makeGrid(size);
         addPixelColorChange();
-        addSizeChangeButton();
         current = size;
-})
+    })
+}
+
+function addClearButton(wrapper){
+    let button = document.createElement("button");
+    button.textContent = "Clear";
+    button.classText= "clear-button";
+    button.style.fontSize = "25px";
+    wrapper.appendChild(button);
+    button.addEventListener("click", (event) => {
+        container.innerHTML = "";
+        makeGrid(current);
+        addPixelColorChange();
+    })
 
 }
+
