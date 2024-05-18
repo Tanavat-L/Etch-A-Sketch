@@ -61,10 +61,15 @@ function addSizeChangeButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         let size = +prompt("How many pixel wide/tall? (Max 100px)");
-        container.innerHTML = "";
-        makeGrid(size);
-        addPixelColorChange(currentColor);
-        currentSize = size;
+        if(typeof(size) === typeof(1) && size <= 100 && size > 0){
+            container.innerHTML = "";
+            makeGrid(size);
+            addPixelColorChange(currentColor);
+            currentSize = size;
+        }
+        else{
+            alert("Enter a valid number");
+        }
     })
 }
 
