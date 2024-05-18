@@ -1,6 +1,8 @@
 
 let container = document.querySelector(".container");
-let current = 16;
+let currentSize = 16;
+let currentColor = "black";
+let temp;
 
 function makeGrid(size){
     for(let i = 0; i<size; i++){
@@ -19,14 +21,24 @@ function makeGrid(size){
 }
 
 makeGrid(16);
-addPixelColorChange();
+addPixelColorChange(currentColor);
 
-function addPixelColorChange(){
+function addPixelColorChange(color){
     let columns = document.querySelectorAll(".column");
     for(let i = 0; i<columns.length; i++){
+        removeEventListener("mouseover", columns[i]);
         columns[i].addEventListener("mouseover", (event) => {
             let target = event.target;
-            target.style.backgroundColor = "black";
+            if(color == "black"){
+                target.style.backgroundColor = "black";
+            }
+            else if (color == "rgb"){
+                let red = Math.round((Math.random()*255));
+                temp = red;
+                let blue = Math.round((Math.random()*255));
+                let green = Math.round((Math.random()*255));
+                target.style.backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
+            }
         })
     }
 }
@@ -38,6 +50,7 @@ function addButtons(){
     container.insertBefore(buttonWrapper,firstRow);
     addSizeChangeButton(buttonWrapper);
     addClearButton(buttonWrapper);
+    addRGBButton(buttonWrapper);
 }
 
 function addSizeChangeButton(wrapper){
@@ -50,8 +63,8 @@ function addSizeChangeButton(wrapper){
         let size = +prompt("How many pixel wide/tall? (Max 100px)");
         container.innerHTML = "";
         makeGrid(size);
-        addPixelColorChange();
-        current = size;
+        addPixelColorChange(currentColor);
+        currentSize = size;
     })
 }
 
@@ -63,9 +76,19 @@ function addClearButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         container.innerHTML = "";
-        makeGrid(current);
-        addPixelColorChange();
+        makeGrid(currentSize);
+        addPixelColorChange(currentColor);
     })
-
 }
 
+function addRGBButton(wrapper){
+    let button = document.createElement("button");
+    button.textContent = "RGB Mode";
+    button.classText= "rgb-button";
+    button.style.fontSize = "25px";
+    wrapper.appendChild(button);
+    button.addEventListener("click", (event) => {
+        currentColor = "rgb";
+        addPixelColorChange(currentColor);
+    })
+}
