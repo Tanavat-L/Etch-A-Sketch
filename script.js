@@ -45,6 +45,9 @@ function addPixelColorChange(color){
                     currentOpacity += 0.1;
                 }
             }
+            else if (color == "white"){
+                target.style.backgroundColor = "white";
+            }
         })
     }
 }
@@ -56,6 +59,7 @@ function addButtons(){
     container.insertBefore(buttonWrapper,firstRow);
     addSizeChangeButton(buttonWrapper);
     addClearButton(buttonWrapper);
+    addEraserButton(buttonWrapper);
     addRGBButton(buttonWrapper);
     addBlackButton(buttonWrapper);
 }
@@ -117,6 +121,18 @@ function addBlackButton(wrapper){
     button.addEventListener("click", (event) => {
         currentColor = "black";
         currentOpacity = 0.1;
+        addPixelColorChange(currentColor);
+    })
+}
+
+function addEraserButton(wrapper){
+    let button = document.createElement("button");
+    button.textContent = "Eraser";
+    button.classText= "eraser-button";
+    button.style.fontSize = "25px";
+    wrapper.appendChild(button);
+    button.addEventListener("click", (event) => {
+        currentColor = "white";
         addPixelColorChange(currentColor);
     })
 }
