@@ -8,11 +8,11 @@ function makeGrid(size){
     for(let i = 0; i<size; i++){
         let row = document.createElement("div");
         row.className = "row";
-        row.style.cssText = "display: flex; flex: 1 1 auto; background-color: white;"
+        row.style.cssText = "display: flex; flex: 1 1 auto; background-color: #BCD2E8;"
         for(let j = 0; j<size; j++){
             let column = document.createElement("div");
             column.className = "column";
-            column.style.cssText = "flex: 1 1 auto; aspect-ratio: 1/1; background-color:#FFFAE6;"
+            column.style.cssText = "flex: 1 1 auto; aspect-ratio: 1/1; background-color:#BCD2E8;"
             row.appendChild(column);
         }
         container.appendChild(row);
@@ -46,7 +46,7 @@ function addPixelColorChange(color){
                 }
             }
             else if (color == "white"){
-                target.style.backgroundColor = "white";
+                target.style.backgroundColor = "#BCD2E8";
             }
         })
     }
@@ -68,7 +68,8 @@ function addSizeChangeButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "Change grid size";
     button.classText= "change-size-button";
-    button.style.fontSize = "25px";
+    button.style.fontSize = "20px";
+    button.style.cssText += "color:white; background-color:#15202B; border: 3px solid #46AEEF; border-radius: 10px;"
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         let size = +prompt("How many pixel wide/tall? (Max 100px)");
@@ -89,7 +90,8 @@ function addClearButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "Clear";
     button.classText= "clear-button";
-    button.style.fontSize = "25px";
+    button.style.cssText = "color:white; background-color:#15202B; border: 3px solid #46AEEF; border-radius: 10px; "
+    button.style.fontSize += "20px";
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         container.innerHTML = "";
@@ -103,7 +105,8 @@ function addRGBButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "RGB Mode";
     button.classText= "rgb-button";
-    button.style.fontSize = "25px";
+    button.style.fontSize = "20px";
+    button.style.cssText += "color:white; background-color:#15202B; border: 3px solid #46AEEF; border-radius: 10px;"
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "rgb";
@@ -114,9 +117,10 @@ function addRGBButton(wrapper){
 
 function addBlackButton(wrapper){
     let button = document.createElement("button");
-    button.textContent = "Black Mode";
+    button.textContent = "Black";
     button.classText= "black-button";
-    button.style.fontSize = "25px";
+    button.style.fontSize = "20px";
+    button.style.cssText += "color:white; background-color:#15202B; border: 3px solid #46AEEF; border-radius: 10px;"
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "black";
@@ -129,7 +133,8 @@ function addEraserButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "Eraser";
     button.classText= "eraser-button";
-    button.style.fontSize = "25px";
+    button.style.fontSize = "20px";
+    button.style.cssText += "color:white; background-color:#15202B; border: 3px solid #46AEEF; border-radius: 10px;"
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "white";

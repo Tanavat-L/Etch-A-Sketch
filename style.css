@@ -2,10 +2,10 @@ body {
     height: 100vh;
     display:flex;
     justify-content: center;
-    background-color: #F3E3CC;
+    background-color: #15202B;
 }
 
 .container {
-    height: 750px;
-    width: 800px;
+    height: 600px;
+    width: 600px;
 }
