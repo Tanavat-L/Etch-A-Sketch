@@ -16,11 +16,11 @@ function makeGrid(size){
         }
         container.appendChild(row);
     }
+    addButtons();
 }
 
 makeGrid(16);
 addPixelColorChange();
-addSizeChangeButton();
 
 function addPixelColorChange(){
     let columns = document.querySelectorAll(".column");
@@ -32,23 +32,27 @@ function addPixelColorChange(){
     }
 }
 
-function addSizeChangeButton(){
+function addButtons(){
     let buttonWrapper = document.createElement("div");
     let firstRow = document.querySelector(".row");
+    buttonWrapper.style.cssText="display:flex; justify-content: center; align-item: center; margin: 50px;";
+    container.insertBefore(buttonWrapper,firstRow);
+    addSizeChangeButton(buttonWrapper);
+}
+
+function addSizeChangeButton(wrapper){
     let button = document.createElement("button");
     button.textContent = "Change grid size";
     button.classText= "grid-size";
-    buttonWrapper.appendChild(button);
-    container.insertBefore(buttonWrapper,firstRow);
-    buttonWrapper.style.cssText="display:flex; justify-content: center; align-item: center; margin: 50px;";
-    buttonWrapper.style.cssText+="font-size: 100px;"
+    button.style.fontSize = "25px";
+    wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
-    let size = +prompt("How many pixel wide/tall? (Max 100px)");
-    container.innerHTML = "";
-    makeGrid(size);
-    addPixelColorChange();
-    addSizeChangeButton();
-    current = size;
+        let size = +prompt("How many pixel wide/tall? (Max 100px)");
+        container.innerHTML = "";
+        makeGrid(size);
+        addPixelColorChange();
+        addSizeChangeButton();
+        current = size;
 })
 
 }
