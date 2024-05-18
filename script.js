@@ -26,7 +26,6 @@ addPixelColorChange(currentColor);
 function addPixelColorChange(color){
     let columns = document.querySelectorAll(".column");
     for(let i = 0; i<columns.length; i++){
-        removeEventListener("mouseover", columns[i]);
         columns[i].addEventListener("mouseover", (event) => {
             let target = event.target;
             if(color == "black"){
@@ -51,6 +50,7 @@ function addButtons(){
     addSizeChangeButton(buttonWrapper);
     addClearButton(buttonWrapper);
     addRGBButton(buttonWrapper);
+    addBlackButton(buttonWrapper);
 }
 
 function addSizeChangeButton(wrapper){
@@ -89,6 +89,18 @@ function addRGBButton(wrapper){
     wrapper.appendChild(button);
     button.addEventListener("click", (event) => {
         currentColor = "rgb";
+        addPixelColorChange(currentColor);
+    })
+}
+
+function addBlackButton(wrapper){
+    let button = document.createElement("button");
+    button.textContent = "Black Mode";
+    button.classText= "black-button";
+    button.style.fontSize = "25px";
+    wrapper.appendChild(button);
+    button.addEventListener("click", (event) => {
+        currentColor = "black";
         addPixelColorChange(currentColor);
     })
 }
